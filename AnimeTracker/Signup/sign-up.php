@@ -30,19 +30,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Anime Tracker</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body>
+<body class="login-body">
 
-<h2>Sign Up</h2>
-<form action="sign-up.php" method="POST">
-    <input type="text" name="username" placeholder="Username" required><br>
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="password" name="password" placeholder="Password" required><br>
-    <button type="submit">Sign Up</button>
-</form>
+<div class="login-container">
+    <h2>Join the Anime Journey!</h2>
+    <p class="subtitle">Create your account to start tracking your favorite series 🌸</p>
+    <form action="sign-up.php" method="POST" class="login-form">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Sign Up</button>
+    </form>
 
-<p>Already have an account? <a href="../Login/login.php">Login here</a></p>
+    <div class="links">
+        <p>Already have an account? <a href="../Login/login.php">Login here</a></p>
+    </div>
+</div>
 
 </body>
 </html>
+

@@ -11,23 +11,28 @@ $username = $_SESSION['username'];
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Anime Tracker</title>
-    <link rel="stylesheet" href="../css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - Anime Tracker</title>
+  <link rel="stylesheet" href="../css/styles.css" />
 </head>
-<body>
-
-<header>
+<body class="dashboard-body">
+  <header class="dashboard-header">
     <h1>Welcome, <?= $username ?>!</h1>
-    <a href="../Login/login.php">Logout</a>
-</header>
+    <a href="../Login/login.php" class="logout-btn">Logout</a>
+  </header>
 
-<h2>Featured Anime</h2>
-<!-- This section will dynamically fetch and display featured anime using JavaScript and AJAX -->
-<div id="animeList"></div>
+  <main class="dashboard-main">
+    <h2 class="section-title">🌸 Featured Anime</h2>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search for an anime...">
+      <button onclick="handleSearch()">Search</button>
+    </div>
+    <div id="animeList" class="anime-grid"></div>
+  </main>
 
-<script src="../js/animeTracker.js" type="module"></script>
-
+  <script src="js/amimeTrackerVanilla.js"></script>
 </body>
 </html>
+
+

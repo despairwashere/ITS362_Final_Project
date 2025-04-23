@@ -41,19 +41,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Anime Tracker</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body>
+<body class="login-body">
 
-<h2>Login</h2>
-<form action="login.php" method="POST">
-    <input type="text" name="username" placeholder="Username" required><br>
-    <input type="password" name="password" placeholder="Password" required><br>
-    <button type="submit">Login</button>
-</form>
+<div class="login-container">
+    <h2>Welcome Back!</h2>
+    <p class="subtitle">Log in to continue✨</p>
+    <form action="login.php" method="POST" class="login-form">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
 
-<p>Don't have an account? <a href="../Signup/sign-up.php">Sign up here</a></p>
-<p>Login as Admin? <a href="../Login/adminlogin.php"> Login here</a></p>
+    <div class="links">
+        <p>Don't have an account? <a href="../Signup/sign-up.php">Sign up here</a></p>
+        <p>Admin? <a href="../Login/adminlogin.php">Login here</a></p>
+    </div>
+</div>
 
 </body>
 </html>
+
