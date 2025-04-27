@@ -7,7 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Check if user exists in the database
     $stmt = $conn->prepare("SELECT UserID, Username, PasswordHash FROM Users WHERE Username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -17,12 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($stmt->num_rows > 0) {
         $stmt->fetch();
 
-        // Verify password
         if (password_verify($password, $dbPasswordHash)) {
             $_SESSION['user_id'] = $userID;
             $_SESSION['username'] = $dbUsername;
 
-            header("Location: ../Dashboard/dashboard.php"); // Redirect to dashboard after login
+            header("Location: ../Dashboard/dashboard.php");
             exit();
         } else {
             echo "Invalid credentials!";
@@ -42,6 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Anime Tracker</title>
     <link rel="stylesheet" href="../css/styles.css">
+
+    <style>
+        .login-button {
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+    </style>
 </head>
 <body class="login-body">
 
@@ -51,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form action="login.php" method="POST" class="login-form">
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
+        <button type="submit" class="login-button" id="loginButton">Login</button>
     </form>
 
     <div class="links">
@@ -60,6 +65,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </div>
 
+<script>
+    const loginButton = document.getElementById('loginButton');
+    let hoverTimer;
+    let moveInterval;
+    let resetTimer;
+
+    loginButton.addEventListener('mouseenter', () => {
+        hoverTimer = setTimeout(() => {
+            // Start moving randomly every 0.5 seconds
+            moveInterval = setInterval(() => {
+                const randomX = Math.floor(Math.random() * 200) - 100; // Random between -100px and 100px
+                const randomY = Math.floor(Math.random() * 200) - 100;
+                loginButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            }, 500);
+
+            // Reset back to normal after 15 seconds
+            resetTimer = setTimeout(() => {
+                clearInterval(moveInterval);
+                loginButton.style.transform = 'translate(0, 0)';
+            }, 15000);
+
+        }, 5000); // Wait 5 seconds hovering
+    });
+
+    loginButton.addEventListener('mouseleave', () => {
+        clearTimeout(hoverTimer);
+    });
+</script>
+
 </body>
 </html>
-
