@@ -31,7 +31,7 @@ $username = $_SESSION['username'];
     <div id="animeList" class="anime-grid"></div>
   </main>
 
-  <script src="js/amimeTrackerVanilla.js"></script>
+  <script src="js/animeTrackerVanilla.js"></script>
 </body>
 </html>
 
